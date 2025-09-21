@@ -1,0 +1,22 @@
+{% extends "portfolioapp/base.html" %}
+{% block title %}Contact | Portfolio{% endblock %}
+
+{% block content %}
+<section id="contact" class="contact">
+    <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+
+        {% if success %}
+            <p style="color:green;">✅ Your message has been sent successfully!</p>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Your Name" required><br>
+            <input type="email" name="email" placeholder="Your Email" required><br>
+            <textarea name="message" placeholder="Your Message" required></textarea><br>
+            <button type="submit" class="btn">Send Message</button><br>
+        </form>
+    </div>
+</section>
+{% endblock %}
