@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Edit Task</title>
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <div class="container">
+    <div class="card edit-card">
+      <h1>Edit Task</h1>
+      <form method="POST">
+        {% csrf_token %}
+        <input name="title" value="{{ obj.title }}" required>
+        <button class="btn">Save</button>
+      </form>
+      <p><a href="{% url 'todopage' %}">Back to tasks</a></p>
+    </div>
+  </div>
+</body>
+</html>
