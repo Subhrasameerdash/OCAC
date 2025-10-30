@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | Django Shop{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h2 class="mb-3">Account Overview</h2>
+        <p>Welcome back, {{ user.first_name|default:user.username }}!</p>
+        <p>You can manage your recent orders below.</p>
+        <h4 class="mt-4">Recent Orders</h4>
+        <ul class="list-group">
+            {% for order in orders %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Order #{{ order.id }} - {{ order.created_at|date:"M d, Y" }}
+                    <span class="badge bg-primary">${{ order.total_amount|floatformat:2 }}</span>
+                </li>
+            {% empty %}
+                <li class="list-group-item">No orders yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

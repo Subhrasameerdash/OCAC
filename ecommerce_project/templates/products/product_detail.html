@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }} | Django Shop{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" class="img-fluid rounded" alt="{{ product.name }}">
+        {% else %}
+            <img src="https://via.placeholder.com/600x400?text=No+Image" class="img-fluid rounded" alt="{{ product.name }}">
+        {% endif %}
+    </div>
+    <div class="col-md-6">
+        <h2>{{ product.name }}</h2>
+    <p class="text-muted">${{ product.price|floatformat:2 }}</p>
+        <p>{{ product.description }}</p>
+        <p><strong>Stock:</strong> {% if product.stock > 0 %}{{ product.stock }}{% else %}<span class="text-danger">Out of stock</span>{% endif %}</p>
+        {% if user.is_authenticated %}
+            <form method="post" action="{% url 'cart:add' product.slug %}" class="row g-2 align-items-end">
+                {% csrf_token %}
+                <div class="col-auto">
+                    <label for="quantity" class="form-label">Quantity</label>
+                    <input type="number" min="1" max="{{ product.stock }}" value="1" class="form-control" name="quantity" id="quantity" {% if product.stock == 0 %}disabled{% endif %}>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary" {% if product.stock == 0 %}disabled{% endif %}>Add to Cart</button>
+                </div>
+            </form>
+        {% else %}
+            <a href="{% url 'users:login' %}" class="btn btn-secondary">Login to purchase</a>
+        {% endif %}
+        <a href="{% url 'products:product_list' %}" class="btn btn-link mt-3">Back to shop</a>
+    </div>
+</div>
+{% endblock %}
