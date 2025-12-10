@@ -1,19 +1,41 @@
 # OCAC Projects Repository
 
-This repository contains three Django-based web applications: Portfolio Project, Task Management System, and Weather Forecasting App.
+This repository contains four Django-based web applications: E-commerce Platform, Portfolio Project, Task Management System, and Weather Forecasting App.
 
 ## 📂 Repository Structure
 
 ```
 OCAC/
-├── Portfolio project/        # Personal portfolio website
+├── ecommerce_project/       # E-commerce web application
+├── Portfolio project/       # Personal portfolio website
 ├── Task management Project/ # Task management application
 └── weather forecasting app/ # Weather forecasting application
 ```
 
 ## 🚀 Projects Overview
 
-### 1. Portfolio Project
+### 1. E-commerce Project
+
+A full-featured e-commerce platform with user authentication, product catalog, shopping cart, and checkout system.
+
+**Features:**
+
+- User registration, login, and logout
+- Product catalog with images, prices, and stock management
+- Shopping cart with quantity updates and item removal
+- Checkout process with shipping details and payment options
+- Order history and management
+- Admin panel for product and user management
+
+**Tech Stack:**
+
+- Django 5.2.7
+- HTML/CSS/JavaScript
+- Bootstrap
+- SQLite3
+- Pillow (for image handling)
+
+### 2. Portfolio Project
 
 A personal portfolio website built with Django to showcase projects, skills, and experience.
 
@@ -32,7 +54,7 @@ A personal portfolio website built with Django to showcase projects, skills, and
 - Bootstrap
 - SQLite3
 
-### 2. Task Management Project
+### 3. Task Management Project
 
 A full-featured task management system with user authentication.
 
@@ -51,7 +73,7 @@ A full-featured task management system with user authentication.
 - SQLite3
 - Bootstrap
 
-### 3. Weather Forecasting App
+### 4. Weather Forecasting App
 
 A weather application that provides current weather information for any city.
 
@@ -103,6 +125,19 @@ python manage.py runserver
 
 ### Project-Specific Setup
 
+#### E-commerce Project
+
+```bash
+cd ecommerce_project
+python -m venv env
+source env/Scripts/activate  # On Windows: env\Scripts\activate
+pip install -r requirements.txt
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
+```
+
 #### Portfolio Project
 
 ```bash
@@ -138,6 +173,16 @@ python manage.py runserver
 ```
 
 ## 🌟 Features
+
+### E-commerce Project
+
+- User authentication and profile management
+- Product catalog with image uploads and stock tracking
+- Shopping cart functionality with quantity management
+- Secure checkout process with multiple payment options
+- Order history and management
+- Admin interface for product and order management
+- Responsive design with Bootstrap
 
 ### Portfolio Project
 
