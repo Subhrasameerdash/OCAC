@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Logged Out | OCAC Blog{% endblock title %}
+
+{% block content %}
+<div class="text-center py-5">
+    <h1>You have been logged out.</h1>
+    <p class="lead">Come back soon! <a href="{% url 'login' %}">Login again</a>.</p>
+</div>
+{% endblock content %}

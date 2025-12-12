@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete {{ object.title }} | OCAC Blog{% endblock title %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-body text-center">
+                <h2 class="mb-3">Delete Post</h2>
+                <p>Are you sure you want to delete "{{ object.title }}"? This action cannot be undone.</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="{{ object.get_absolute_url }}" class="btn btn-outline-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
