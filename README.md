@@ -60,7 +60,6 @@ Repeat steps 2–5 for any other project you want to explore. Each project can r
 > 💡 Tip: Keep environment-specific secrets (API keys, database URLs, etc.) in a `.env` file or Windows environment variables rather than committing them to source control.
 
 ## 🧭 Project Guides
-
 ### 1. E-commerce Platform (`ecommerce_project/`)
 
 A production-ready storefront featuring authentication, a product catalog, cart persistence, and a simple checkout pipeline.
@@ -90,7 +89,6 @@ python manage.py runserver
 ```
 
 **Key URLs**
-
 - Storefront: `http://127.0.0.1:8000/`
 - Admin: `http://127.0.0.1:8000/admin/`
 
@@ -255,5 +253,4 @@ python manage.py runserver
 This repository is licensed under the MIT License. See [`LICENSE`](LICENSE) for full text.
 
 ## 👤 Author
-
 **Subhra Sameer Dash** — Reach out on GitHub for collaboration or questions.
