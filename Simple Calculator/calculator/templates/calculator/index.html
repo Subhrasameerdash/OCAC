@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glass Calculator</title>
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="{% static 'calculator/style.css' %}">
+</head>
+<body>
+    <!-- Abstract shapes for background -->
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    
+    <div class="container">
+        <div class="calculator">
+            <form method="post">
+                {% csrf_token %}
+                <div class="display">
+                    <!-- Display input field -->
+                    <input type="text" name="expression" id="expression" value="{{ result|default:expression }}" placeholder="0" readonly>
+                </div>
+                <div class="buttons">
+                    <!-- Clear button -->
+                    <button type="button" class="clear" onclick="clearDisplay()">C</button>
+                    <!-- Operators -->
+                    <button type="button" onclick="appendToDisplay('/')" class="operator">/</button>
+                    <button type="button" onclick="appendToDisplay('*')" class="operator">&times;</button>
+                    <button type="button" onclick="backspace()" class="operator">&#x232B;</button>
+                    
+                    <!-- Row 1 -->
+                    <button type="button" onclick="appendToDisplay('7')">7</button>
+                    <button type="button" onclick="appendToDisplay('8')">8</button>
+                    <button type="button" onclick="appendToDisplay('9')">9</button>
+                    <button type="button" onclick="appendToDisplay('-')" class="operator">-</button>
+                    
+                    <!-- Row 2 -->
+                    <button type="button" onclick="appendToDisplay('4')">4</button>
+                    <button type="button" onclick="appendToDisplay('5')">5</button>
+                    <button type="button" onclick="appendToDisplay('6')">6</button>
+                    <button type="button" onclick="appendToDisplay('+')" class="operator">+</button>
+                    
+                    <!-- Row 3 -->
+                    <button type="button" onclick="appendToDisplay('1')">1</button>
+                    <button type="button" onclick="appendToDisplay('2')">2</button>
+                    <button type="button" onclick="appendToDisplay('3')">3</button>
+                    <button type="submit" name="calculate" class="equal">=</button>
+                    
+                    <!-- Row 4 -->
+                    <button type="button" onclick="appendToDisplay('0')" style="grid-column: span 2;">0</button>
+                    <button type="button" onclick="appendToDisplay('.')">.</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function appendToDisplay(value) {
+            const display = document.getElementById('expression');
+            // If the current value is "Error", clear it first
+            if (display.value === "Error") {
+                display.value = "";
+            }
+            display.value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('expression').value = "";
+        }
+
+        function backspace() {
+            const display = document.getElementById('expression');
+            if (display.value === "Error") {
+                display.value = "";
+            } else {
+                display.value = display.value.slice(0, -1);
+            }
+        }
+    </script>
+</body>
+</html>

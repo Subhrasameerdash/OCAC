@@ -11,6 +11,7 @@ This repository is a monorepo that bundles five independent Django applications 
 | 3   | Portfolio Site           | `Portfolio project/`                      | Landing page + contact form                         | Django 5.2.6                                           |
 | 4   | Task Management App      | `Task management Project/todo/`           | Authenticated TODO list with CRUD UI                | Django 5.2.6                                           |
 | 5   | Weather Dashboard        | `weather forecasting app/weatherproject/` | Real-time weather + hero imagery                    | Django 5.2.6, OpenWeatherMap API, Google Custom Search |
+| 6   | Simple Calculator        | `Simple Calculator/`                      | Basic arithmetic operations, Glassmorphism UI       | Django 5.2.6, CSS3                                     |
 
 ## 🗂️ Repository Layout
 
@@ -20,7 +21,8 @@ OCAC/
 ├── ecommerce_project/
 ├── Portfolio project/
 ├── Task management Project/
-└── weather forecasting app/
+├── weather forecasting app/
+└── Simple Calculator/
 ```
 
 Each project root contains its own `manage.py`, `requirements.txt`, static and template assets, and (optionally) a local virtual environment directory. Feel free to delete and recreate those virtual environments if you prefer a different layout.
@@ -227,6 +229,32 @@ venv\Scripts\Activate.ps1
 pip install -r requirements.txt  # install Django + requests
 python manage.py runserver
 ```
+
+### 6. Simple Calculator (`Simple Calculator/`)
+
+A sleek, responsive web-based calculator with a modern glassmorphism aesthetic.
+
+**Features**
+
+- Basic arithmetic operations (Add, Subtract, Multiply, Divide)
+- Interactive UI with hover effects and animations
+- Error handling for invalid expressions (e.g., division by zero)
+- Responsive design suitable for various screen sizes
+
+**Tech Stack**: Django 5.2.6, HTML5, CSS3 (Glassmorphism), JavaScript
+
+**Run locally**
+
+```powershell
+cd "Simple Calculator"
+python -m venv venv
+venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python manage.py runserver
+```
+
+**Key URLs**
+- Calculator: `http://127.0.0.1:8000/`
 
 ## 🧪 Testing
 
