@@ -1,0 +1,35 @@
+# Django / Python
+*.pyc
+__pycache__/
+db.sqlite3
+*.sqlite3
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment
+.env
+*.env
+
+# Node (in case Chart.js is installed locally later)
+node_modules/
+
+# Tasks (local dev notes)
+tasks/
