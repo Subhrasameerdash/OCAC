@@ -1,6 +1,6 @@
 # OCAC Multi-Project Django Suite
 
-This repository is a monorepo that bundles five independent Django applications that showcase different aspects of full-stack development: an e-commerce platform, a blogging platform with a REST API, a personal portfolio site, a task management system, and a weather dashboard. Each project lives in its own folder with its own virtual environment and `requirements.txt` file so you can run them independently or side-by-side.
+This repository is a monorepo that bundles seven independent Django applications that showcase different aspects of full-stack development: an e-commerce platform, a blogging platform with a REST API, a personal portfolio site, a task management system, a weather dashboard, a simple calculator, and a smart finance tracker. Each project lives in its own folder with its own virtual environment and `requirements.txt` file so you can run them independently or side-by-side.
 
 ## 📚 Projects at a Glance
 
@@ -12,6 +12,7 @@ This repository is a monorepo that bundles five independent Django applications 
 | 4   | Task Management App      | `Task management Project/todo/`           | Authenticated TODO list with CRUD UI                | Django 5.2.6                                           |
 | 5   | Weather Dashboard        | `weather forecasting app/weatherproject/` | Real-time weather + hero imagery                    | Django 5.2.6, OpenWeatherMap API, Google Custom Search |
 | 6   | Simple Calculator        | `Simple Calculator/`                      | Basic arithmetic operations, Glassmorphism UI       | Django 5.2.6, CSS3                                     |
+| 7   | Expense Tracker (Flux)   | `Expense Tracker/`                        | Dark-themed SPA, async CRUD, Chart.js dashboards    | Django 6.0, Vanilla JS, Chart.js, CSS3                 |
 
 ## 🗂️ Repository Layout
 
@@ -22,7 +23,8 @@ OCAC/
 ├── Portfolio project/
 ├── Task management Project/
 ├── weather forecasting app/
-└── Simple Calculator/
+├── Simple Calculator/
+└── Expense Tracker/
 ```
 
 Each project root contains its own `manage.py`, `requirements.txt`, static and template assets, and (optionally) a local virtual environment directory. Feel free to delete and recreate those virtual environments if you prefer a different layout.
@@ -255,6 +257,38 @@ python manage.py runserver
 
 **Key URLs**
 - Calculator: `http://127.0.0.1:8000/`
+
+### 7. Expense Tracker — Flux Smart Finance (`Expense Tracker/`)
+
+A premium dark-themed personal finance tracker with an async vanilla JS frontend—no page reloads.
+
+**Features**
+
+- Dashboard with live-updating cards: Total Income, Total Expenses, Balance, Savings Rate
+- Chart.js doughnut chart (expense category breakdown) and line chart (monthly income/expense trend)
+- Full CRUD for transactions via async Fetch API with toast notifications
+- Filter bar: type (income/expense), category, payment mode, date range
+- Glassmorphism dark UI with CSS variables, micro-animations, and responsive design
+- Fat-model architecture with ORM aggregation queries
+
+**Tech Stack**: Django 6.0, Vanilla JavaScript (Fetch API), Chart.js 4, CSS3 (Custom Properties, Grid, Flexbox)
+
+**Run locally**
+
+```powershell
+cd "Expense Tracker"
+python -m venv venv
+venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
+
+**Key URLs**
+- App: `http://127.0.0.1:8000/`
+- Admin: `http://127.0.0.1:8000/admin/`
+
+> 💰 The `Transaction` model supports categories (Food, Transport, Bills, Shopping, Health, Education, Salary, Freelance, Investment, Other) and payment modes (Cash, UPI, Card, Net Banking).
 
 ## 🧪 Testing
 
