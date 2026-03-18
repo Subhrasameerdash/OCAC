@@ -1,0 +1,63 @@
+{% load static %}
+
+<article class="post-card {% if post.post_type == 'thought' %}thought-card{% endif %}" id="post-{{ post.pk }}">
+    <!-- ── Post Header ────────────────────────────────────────────── -->
+    <div class="post-header">
+        <a href="{% url 'profile' username=post.author.username %}" class="post-author-link">
+            <img src="{{ post.author.profile_pic.url }}"
+                 alt="{{ post.author.username }}"
+                 class="post-avatar">
+            <span class="post-author-name">{{ post.author.username }}</span>
+        </a>
+        <span class="post-time">{{ post.created_at|timesince }} ago</span>
+    </div>
+
+    <!-- ── Post Media ─────────────────────────────────────────────── -->
+    {% if post.post_type == 'media' and post.media %}
+    <div class="post-media">
+        {% if post.is_video %}
+        <video src="{{ post.media.url }}" controls preload="metadata" class="post-video"></video>
+        {% else %}
+        <img src="{{ post.media.url }}" alt="{{ post.caption|truncatewords:10 }}" class="post-image" loading="lazy">
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <!-- ── Post Body ──────────────────────────────────────────────── -->
+    {% if post.caption %}
+    <div class="post-body">
+        {% if post.post_type == 'thought' %}
+        <p class="thought-text">{{ post.caption }}</p>
+        {% else %}
+        <p class="caption-text"><strong>{{ post.author.username }}</strong> {{ post.caption }}</p>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <!-- ── Post Actions ───────────────────────────────────────────── -->
+    <div class="post-actions">
+        <div class="post-actions-left">
+            <button class="action-btn like-btn {% if post.is_liked_by == True %}liked{% endif %}"
+                    data-post-id="{{ post.pk }}"
+                    id="like-btn-{{ post.pk }}">
+                <svg viewBox="0 0 24 24" class="icon-heart"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </button>
+            <a href="{% url 'post_detail' pk=post.pk %}" class="action-btn" id="comment-btn-{{ post.pk }}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </a>
+        </div>
+
+        {% if post.author == request.user %}
+        <a href="{% url 'delete_post' pk=post.pk %}" class="action-btn delete-btn" title="Delete"
+           onclick="return confirm('Delete this post?')" id="delete-btn-{{ post.pk }}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+        </a>
+        {% endif %}
+    </div>
+
+    <!-- ── Like & Comment Counts ──────────────────────────────────── -->
+    <div class="post-stats">
+        <span class="like-count" id="like-count-{{ post.pk }}">{{ post.like_count }} likes</span>
+        <a href="{% url 'post_detail' pk=post.pk %}" class="comment-count-link">{{ post.comment_count }} comments</a>
+    </div>
+</article>

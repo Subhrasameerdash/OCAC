@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Profile — Aura{% endblock %}
+
+{% block content %}
+<div class="edit-profile-container">
+    <div class="edit-profile-card">
+        <h2 class="section-title">Edit Profile</h2>
+
+        <form method="post" enctype="multipart/form-data" class="edit-profile-form" id="edit-profile-form">
+            {% csrf_token %}
+
+            <div class="edit-avatar-section">
+                <img src="{{ user.profile_pic.url }}"
+                     alt="{{ user.username }}"
+                     class="profile-pic-large"
+                     id="avatar-preview">
+                <label for="id_profile_pic" class="btn btn-outline btn-small">Change Photo</label>
+                {{ form.profile_pic }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_bio" class="form-label">Bio</label>
+                {{ form.bio }}
+                {% if form.bio.errors %}
+                <div class="field-errors">
+                    {% for error in form.bio.errors %}
+                    <p class="error-text">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="form-actions">
+                <a href="{% url 'profile' username=user.username %}" class="btn btn-outline">Cancel</a>
+                <button type="submit" class="btn btn-gold" id="save-profile-btn">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

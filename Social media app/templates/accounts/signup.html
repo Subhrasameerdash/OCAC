@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Aura — Sign Up{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h1 class="auth-logo">AURA</h1>
+            <p class="auth-tagline">Share your vibe with the world.</p>
+        </div>
+
+        <form method="post" class="auth-form" id="signup-form" novalidate>
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+            <div class="form-errors">
+                {% for error in form.non_field_errors %}
+                <p class="error-text">{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% for field in form %}
+            <div class="form-group">
+                {{ field }}
+                {% if field.errors %}
+                <div class="field-errors">
+                    {% for error in field.errors %}
+                    <p class="error-text">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-gold btn-full" id="signup-btn">Create Account</button>
+        </form>
+
+        <div class="auth-footer">
+            <p>Already have an account? <a href="{% url 'login' %}" class="gold-link">Log in</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

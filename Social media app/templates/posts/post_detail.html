@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ post.author.username }} — Post — Aura{% endblock %}
+
+{% block content %}
+<div class="detail-container">
+    {% include 'posts/includes/post_card.html' with post=post %}
+
+    <!-- ── Comments Section ───────────────────────────────────────── -->
+    <div class="comments-section" id="comments-section">
+        <h3 class="comments-title">Comments</h3>
+
+        <div class="comments-list" id="comments-list">
+            {% for comment in post.comments.all %}
+            <div class="comment" id="comment-{{ comment.pk }}">
+                <a href="{% url 'profile' username=comment.author.username %}" class="comment-author-link">
+                    <img src="{{ comment.author.profile_pic.url }}" alt="{{ comment.author.username }}" class="comment-avatar">
+                </a>
+                <div class="comment-body">
+                    <a href="{% url 'profile' username=comment.author.username %}" class="comment-author-name">{{ comment.author.username }}</a>
+                    <p class="comment-text">{{ comment.text }}</p>
+                    <span class="comment-time">{{ comment.created_at|timesince }} ago</span>
+                </div>
+            </div>
+            {% empty %}
+            <p class="no-comments" id="no-comments">No comments yet. Be the first.</p>
+            {% endfor %}
+        </div>
+
+        <!-- ── Add Comment ────────────────────────────────────────── -->
+        <form class="comment-form" id="comment-form" data-post-id="{{ post.pk }}">
+            {% csrf_token %}
+            <img src="{{ request.user.profile_pic.url }}" alt="{{ request.user.username }}" class="comment-avatar">
+            <input type="text" name="text" placeholder="Add a comment…" class="comment-input" id="comment-input" autocomplete="off" maxlength="500">
+            <button type="submit" class="btn btn-gold btn-small comment-submit" id="comment-submit-btn">Post</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
