@@ -1,6 +1,6 @@
 # OCAC Multi-Project Django Suite
 
-This repository is a monorepo that bundles seven independent Django applications that showcase different aspects of full-stack development: an e-commerce platform, a blogging platform with a REST API, a personal portfolio site, a task management system, a weather dashboard, a simple calculator, and a smart finance tracker. Each project lives in its own folder with its own virtual environment and `requirements.txt` file so you can run them independently or side-by-side.
+This repository is a monorepo that bundles eight independent Django applications that showcase different aspects of full-stack development: an e-commerce platform, a blogging platform with a REST API, a personal portfolio site, a task management system, a weather dashboard, a simple calculator, a smart finance tracker, and a social media app. Each project lives in its own folder with its own virtual environment and `requirements.txt` file so you can run them independently or side-by-side.
 
 ## 📚 Projects at a Glance
 
@@ -13,6 +13,7 @@ This repository is a monorepo that bundles seven independent Django applications
 | 5   | Weather Dashboard        | `weather forecasting app/weatherproject/` | Real-time weather + hero imagery                    | Django 5.2.6, OpenWeatherMap API, Google Custom Search |
 | 6   | Simple Calculator        | `Simple Calculator/`                      | Basic arithmetic operations, Glassmorphism UI       | Django 5.2.6, CSS3                                     |
 | 7   | Expense Tracker (Flux)   | `Expense Tracker/`                        | Dark-themed SPA, async CRUD, Chart.js dashboards    | Django 6.0, Vanilla JS, Chart.js, CSS3                 |
+| 8   | Social Media App (Aura)  | `Social media app/`                       | Media/text posts, profiles, follows, likes, comments| Django, SQLite                                         |
 
 ## 🗂️ Repository Layout
 
@@ -24,7 +25,8 @@ OCAC/
 ├── Task management Project/
 ├── weather forecasting app/
 ├── Simple Calculator/
-└── Expense Tracker/
+├── Expense Tracker/
+└── Social media app/
 ```
 
 Each project root contains its own `manage.py`, `requirements.txt`, static and template assets, and (optionally) a local virtual environment directory. Feel free to delete and recreate those virtual environments if you prefer a different layout.
@@ -289,6 +291,37 @@ python manage.py runserver
 - Admin: `http://127.0.0.1:8000/admin/`
 
 > 💰 The `Transaction` model supports categories (Food, Transport, Bills, Shopping, Health, Education, Salary, Freelance, Investment, Other) and payment modes (Cash, UPI, Card, Net Banking).
+
+### 8. Social Media App (Aura) (`Social media app/`)
+
+A feature-rich social media platform that allows users to share media and thought posts, interact with others, and build a following.
+
+**Features**
+
+- Custom user model with profile pictures, bios, and email/username login
+- Follow system (followers/following functionality)
+- Two types of posts: Media (image/video) and Thought (text-only cards)
+- Like and comment on posts
+- Fat-model architecture for efficient status and count queries
+
+**Tech Stack**: Django, SQLite (dev)
+
+**Run locally**
+
+```powershell
+cd "Social media app"
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install django
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
+```
+
+**Key URLs**
+- App: `http://127.0.0.1:8000/`
+- Admin: `http://127.0.0.1:8000/admin/`
 
 ## 🧪 Testing
 
